@@ -2,46 +2,46 @@
 
 ##目录
 
-* [account.go](#accountgo)
-	* [RLogin](#rlogin)(acc, userName, password)
-		* [Login](#login)(acc, password)
-	* [IsLogin](#islogin)(BDUSS)
-* [bawu.go](#bawugo)
-	* [DeletePost](#deletepost)(acc, pid)
-	* [DeleteThread](#deletethread)(acc, tid)
-	* [BlockIDWeb](#blockidweb)(BDUSS, forumID, userName, pid, day, reason)
-	* [CommitPrison](#commitprison)(acc, forumName, forumID, userName, threadID, postID, day ,reason)
-* [message.go](#messagego)
-	* [RFeedReplyMe](#rfeedreplyme)(acc)
+* [account.go](#accountgo) _账号相关_
+	* [RLogin](#rlogin)(acc, userName, password) _(原始)登录_
+		* [Login](#login)(acc, password) _登录_
+	* [IsLogin](#islogin)(BDUSS) _检验是否登录_
+* [bawu.go](#bawugo) _吧务相关_
+	* [DeletePost](#deletepost)(acc, pid) _删贴(主题也是一种"贴")_
+	* [DeleteThread](#deletethread)(acc, tid) _删主题_
+	* [BlockIDWeb](#blockidweb)(BDUSS, forumID, userName, pid, day, reason) _封禁(网页版)_
+	* [CommitPrison](#commitprison)(acc, forumName, forumID, userName, threadID, postID, day ,reason) _封禁(客户端版)_
+* [message.go](#messagego) _消息相关_
+	* [RFeedReplyMe](#rfeedreplyme)(acc) _(原始)获取回复消息_
 		* https://github.com/Purstal/pbtools/tree/master/modules/tieba/apis/message/
-	* [RFeedAtMe](#rfeedatme)(acc)
-	* [GetNotice](#getnotice)(acc)
-* [misc.go](#miscgo)
-	* [RSearchForum](#rsearchforum)(forumName)
-		* [SearchForum](#searchforum)(forumName)
-* [page.go](#pagego)
-	* [RGetForum](#rgetforum)(acc, kw, rn, pn)
-		* https://github.com/Purstal/pbtools/tree/master/modules/tieba/apis/forum-win8-1.5.0.0/
-	* [RGetThread](#rgetthread)(acc, tid, mark, pid, pn, rn, withFloor, seeLz, r)
-		* https://github.com/Purstal/pbtools/tree/master/modules/tieba/apis/thread-win8-1.5.0.0/
-	* [RGetFloor](#rgetfloor)(acc, tid, isComment, id, pn)
-		* https://github.com/Purstal/pbtools/tree/master/modules/tieba/apis/floor-andr-6.1.3/
-* [post.go](#postgo)
-	* [AddPost](#addpost)(accAndr, content, fid, forumName, tid, floorNumber, quoteID)
-* [sign-in.go](#sign-ingo)
-	* [GetForumList](#getforumlist)(accAndr)
-* [special.go](#specialgo)
-	* [GetFid](#getfid)(forumName)
-	* [GetUid](#getuid)(userName)
-	* [RGetTbs](#rgettbs)(acc)
-		* [GetTbs](#gettbs)(acc)
-	* [RGetTbsWeb](#rgettbsweb)(BDUSS)
-		* [GetTbsWeb](#gettbsweb)(BDUSS)
-* [unknown.go](#unknowngo)
-	* [RTest](#rtest)(acc, userName, password)
-* [users.go](#usersgo)
-	* [GetUserForumLike](#getuserforumlike)(acc, uid)
-	* [GetUserInfo](#getuserinfo)(acc, uid)
+	* [RFeedAtMe](#rfeedatme)(acc) _(原始)获取@消息_
+	* [GetNotice](#getnotice)(acc) _获取各类提醒数_
+* [misc.go](#miscgo) _杂项/未归类_
+	* [RSearchForum](#rsearchforum)(forumName) _(原始)搜索贴吧_
+		* [SearchForum](#searchforum)(forumName) _搜索贴吧_
+* [page.go](#pagego) _页面相关_
+	* [RGetForum](#rgetforum)(acc, kw, rn, pn) _(原始)获取贴吧主页页面_
+		* [封装](https://github.com/Purstal/pbtools/tree/master/modules/tieba/apis/forum-win8-1.5.0.0/)
+	* [RGetThread](#rgetthread)(acc, tid, mark, pid, pn, rn, withFloor, seeLz, r) _(原始)获取主题页面_
+		* [封装](https://github.com/Purstal/pbtools/tree/master/modules/tieba/apis/thread-win8-1.5.0.0/)
+	* [RGetFloor](#rgetfloor)(acc, tid, isComment, id, pn) _(原始)获取楼层页面_
+		* [封装](https://github.com/Purstal/pbtools/tree/master/modules/tieba/apis/floor-andr-6.1.3/)
+* [post.go](#postgo) _发贴相关_
+	* [AddPost](#addpost)(accAndr, content, fid, forumName, tid, floorNumber, quoteID) _发表贴子_
+* [sign-in.go](#sign-ingo) _签到相关_
+	* [GetForumList](#getforumlist)(accAndr) _获取关注贴吧列表_
+* [special.go](#specialgo) _特殊_
+	* [GetFid](#getfid)(forumName) _获取贴吧fid_
+	* [GetUid](#getuid)(userName) _获取用户uid_
+	* [RGetTbs](#rgettbs)(acc) _(原始)获取tbs(客户端版)_
+		* [GetTbs](#gettbs)(acc) _获取tbs(客户端版)_
+	* [RGetTbsWeb](#rgettbsweb)(BDUSS) _(原始)获取tbs(网页版)_
+		* [GetTbsWeb](#gettbsweb)(BDUSS) _获取tbs(网页版)_
+* [unknown.go](#unknowngo) _未知_
+	* [RTest](#rtest)(acc, userName, password) _(原始)貌似用来测试登录的_
+* [users.go](#usersgo) _用户相关_
+	* [GetUserForumLike](#getuserforumlike)(acc, uid) _获取用户关注贴吧_
+	* [GetUserInfo](#getuserinfo)(acc, uid) _获取用户UserInfo以获取uid(不一定成功)_
 
 ---
 * 以R为前缀的函数返回 `([]byte, error)`
